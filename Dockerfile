@@ -1,6 +1,9 @@
-FROM python:3.9
+FROM python:3.10
+
+RUN pip install uwsgi==2.0.20
 
 EXPOSE 8080
+CMD ["uwsgi", "uwsgi.ini"]
 
 RUN mkdir app
 WORKDIR /app
@@ -14,7 +17,7 @@ VOLUME ["$data_path"]
 ENV SCHEDULER_DB="sqlite:///$data_path/apscheduler.db"
 ENV TIMEZONE="Europe/Madrid" LOG_LEVEL="INFO"
 
-CMD ["uwsgi", "uwsgi.ini"]
+# Se copian los ficheros por frecuencia de modificación: de menos a más
 COPY wsgi_app.py .
 
 COPY scheduler ./scheduler/
