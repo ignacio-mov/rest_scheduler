@@ -1,5 +1,6 @@
 --extra-index-url https://www.piwheels.org/simple
 APScheduler==3.7.0
+SQLAlchemy==1.4.27
 
 Flask==2.0.1
 Flask-APScheduler==1.12.2
